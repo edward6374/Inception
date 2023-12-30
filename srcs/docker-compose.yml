@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  nginx:
+    build: requirements/nginx
+  wordpress:
+    build: requirements/wordpress
+  mariadb:
+    build: requirements/mariadb
+
+volumes:
+
+
+networks:
