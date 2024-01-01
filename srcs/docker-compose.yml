@@ -2,13 +2,53 @@ version: "3.8"
 
 services:
   nginx:
+    container_name: nginx
     build: requirements/nginx
+    depends_on:
+      - wordpress
+    restart: on-failure
+    env_file: .env
+    volumes:
+      - wordpress:/home/vduchi/data/wordpress
+    network: int_net
+    ports:
+      - "443:443"
+      - "9000:9000"
+
   wordpress:
+    container_name: wordpress
     build: requirements/wordpress
+    depends_on:
+      - mariadb
+    restart: on-failure
+    env_file: .env
+    volumes:
+      - wordpress:/home/vduchi/data/wordpress
+    network: int_net
+    ports:
+      - "3306:3306"
+      - "9000:9000"
+
   mariadb:
+    container_name: mariadb
     build: requirements/mariadb
+    restart: on-failure
+    env_file: .env
+    volumes:
+      - db:/home/vduchi/data/wp_database
+    network: int_net
+    ports:
+      - "3306:3306"
 
 volumes:
+  db:
+    driver: local
+
+  wordpress:
+    driver: local
 
 
 networks:
+  int_net:
+    name: int_net
+    internal: true
