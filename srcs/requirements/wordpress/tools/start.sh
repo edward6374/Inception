@@ -1,7 +1,7 @@
 #!/bin/bash
 
-set -e
+#set -e
 
-php-fpm &
+php-fpm8.2 -F
 
-wait
+#wait

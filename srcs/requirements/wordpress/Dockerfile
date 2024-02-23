@@ -10,6 +10,8 @@ RUN chmod +x /usr/local/bin/wp_setup.sh && chmod +x /usr/local/bin/wp_start.sh
 COPY conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
 COPY conf/phpinfo.php /var/www/html/
 
-#WORKDIR /var/www/html/
+WORKDIR /var/www/wp/
 
-ENTRYPOINT [ "/usr/local/bin/wp_start.sh" ]
+CMD [ "sh", "/usr/local/bin/wp_setup.sh" ]
+
+#ENTRYPOINT [ "/usr/local/bin/wp shell" ]

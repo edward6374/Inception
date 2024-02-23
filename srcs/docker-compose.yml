@@ -1,9 +1,22 @@
 version: "3.8"
 
 services:
+  mariadb:
+    build: requirements/mariadb
+    container_name: mariadb
+    restart: on-failure
+    env_file:
+      - .env
+    volumes:
+      - db:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - int_net
+
   nginx:
-    container_name: nginx
     build: requirements/nginx
+    container_name: nginx
     depends_on:
       - wordpress
     restart: on-failure
@@ -17,8 +30,8 @@ services:
       - int_net
 
   wordpress:
-    container_name: wordpress
     build: requirements/wordpress
+    container_name: wordpress
     depends_on:
       - mariadb
     restart: on-failure
@@ -31,32 +44,19 @@ services:
     networks:
       - int_net
 
-  mariadb:
-    container_name: mariadb
-    build: requirements/mariadb
-    restart: on-failure
-    env_file:
-      - .env
-    volumes:
-      - db:/var/lib/mysql
-    ports:
-      - "3306:3306"
-    networks:
-      - int_net
-
 volumes:
   db:
     driver: local
     driver_opts:
       type: none
-      device: /Users/vduchi/data/mariadb
+      device: /home/vduchi/data/mariadb
       o: bind
 
   wordpress:
     driver: local
     driver_opts:
       type: none
-      device: /Users/vduchi/data/wordpress
+      device: /home/vduchi/data/wordpress
       o: bind
 
 
