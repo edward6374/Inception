@@ -2,6 +2,11 @@ DIR = srcs
 MAKE = make --no-print-directory
 DCK_EXEC = /usr/bin/docker
 
+all:
+	@echo up: for compose up
+	@echo upd: for compose up with detach mode
+	@echo down: for compose down
+
 up:
 	@cd $(DIR) && $(DCK_EXEC) compose up
 

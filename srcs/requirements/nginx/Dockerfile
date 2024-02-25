@@ -8,4 +8,6 @@ COPY conf/vduchi.42.fr.conf /etc/nginx/conf.d/vduchi.42.fr.conf
 COPY conf/vduchi.crt /etc/ssl/certs/vduchi.crt
 COPY conf/vduchi.key /etc/ssl/private/vduchi.key
 
+WORKDIR /var/www
+
 CMD ["nginx", "-g", "daemon off;"]
