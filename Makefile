@@ -6,6 +6,11 @@ all:
 	@echo up: for compose up
 	@echo upd: for compose up with detach mode
 	@echo down: for compose down
+	@echo im: display all images
+	@echo vol: display all volumes
+	@echo cont: display all containers
+	@echo clean: delete all containers
+	@echo fclean: delete all containers and all images
 
 up:
 	@cd $(DIR) && $(DCK_EXEC) compose up
