@@ -32,6 +32,13 @@ vol:
 
 clean:
 	@$(DCK_EXEC) container prune -f 1> /dev/null
+	@$(DCK_EXEC) images --format "{{.Repository}}" | awk '{print $1}' | xargs -I {} docker rmi {} 1> /dev/null
 
 fclean: clean
-	@$(DCK_EXEC) images --format "{{.Repository}}" | awk '{print $1}' | xargs -I {} docker rmi {} 1> /dev/null
+	@$(DCK_EXEC) volume rm -f srcs_mariadb 1> /dev/null
+	@$(DCK_EXEC) volume rm -f srcs_wordpress 1> /dev/null
+	@sudo rm -rf ~/data/mariadb/*
+	@sudo rm -rf ~/data/wordpress/*
+	@$(DCK_EXEC) builder prune -f
+
+.PHONY: all up upd down im cont vol clean fclean

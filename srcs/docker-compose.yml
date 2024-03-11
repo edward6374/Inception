@@ -3,20 +3,20 @@ version: "3.8"
 services:
   mariadb:
     build: requirements/mariadb
-    container_name: mariadb
+    container_name: db
     restart: always
     env_file:
       - .env
     volumes:
-      - db:/var/lib/mysql
+      - mariadb:/var/lib/mysql
     ports:
       - "3306:3306"
     networks:
-      - int_net
+      - net
 
   nginx:
     build: requirements/nginx
-    container_name: nginx
+    container_name: web
     depends_on:
       - wordpress
     restart: always
@@ -27,11 +27,11 @@ services:
     ports:
       - "443:443"
     networks:
-      - int_net
+      - net
 
   wordpress:
     build: requirements/wordpress
-    container_name: wordpress
+    container_name: wp
     depends_on:
       - mariadb
     restart: always
@@ -42,10 +42,10 @@ services:
     ports:
       - "9000:9000"
     networks:
-      - int_net
+      - net
 
 volumes:
-  db:
+  mariadb:
     driver: local
     driver_opts:
       type: none
@@ -61,5 +61,5 @@ volumes:
 
 
 networks:
-  int_net:
+  net:
     driver: bridge

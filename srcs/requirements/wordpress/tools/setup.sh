@@ -5,9 +5,9 @@ then
 	echo "Wordpress already exists"
 else
 	wp core download --allow-root
-	wp config create --dbname=$MYSQL_DATABASE --dbuser=$MYSQL_USER --dbpass=$MYSQL_PASSWORD --dbhost=$MYSQL_HOSTNAME --allow-root
-	wp core install --url=$DONAIN_NAME --title="$WORDPRESS_TITLE" --admin_user=$WORDPRESS_ADMIM --admin_password=$WORDPRESS_ADMIM_PASS  --admin_email=$WORDPRESS_ADMIM_EMAIL --skip-email --allow-root
-	wp user create $WORDPRESS_USER $WORDPRESS_EMAIL --role=author --user_pass=$WORDPRESS_USER_PASS --allow-root
+	wp config create --dbname=$MYSQL_DTB --dbuser=$MYSQL_USER --dbpass=$MYSQL_PWD --dbhost=$MYSQL_HOSTNAME --allow-root
+	wp core install --url=$DOMAIN_NAME --title="$WORDPRESS_TITLE" --admin_user=$ADMIM_WP_USER --admin_password=$ADMIN_WP_PWD  --admin_email=$ADMIN_WP_EMAIL --skip-email --allow-root
+	wp user create $WP_NORMAL_USER $WP_NORMAL_EMAIL --user_pass=$WP_NORMAL_PWD --role=author --allow-root
 	wp theme install twentysixteen --activate --allow-root
 fi
 

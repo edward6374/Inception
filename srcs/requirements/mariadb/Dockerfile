@@ -6,7 +6,7 @@ RUN apt-get update && apt-get upgrade -y && \
 	chown -R mysql:mysql /var/lib/mysql && \
 	mysql_install_db --user=mysql --ldata=/var/lib/mysql
 
-COPY conf/my.cnf /etc/mariadb.conf.d/server.conf
+COPY conf/my.cnf /etc/mysql/mariadb.conf.d/50-server.conf
 COPY tools/tool.sh /usr/local/bin/wp_db.sh
 
 CMD ["mysqld_safe"]

@@ -15,4 +15,3 @@ WORKDIR /var/www/wp/
 #CMD [ "sh", "/usr/local/bin/wp_setup.sh" ]
 CMD [ "tail", "-f", "/dev/null" ]
 
-#ENTRYPOINT [ "/usr/local/bin/wp shell" ]
