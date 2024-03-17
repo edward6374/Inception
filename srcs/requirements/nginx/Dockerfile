@@ -1,6 +1,12 @@
 FROM debian:bullseye
 
-RUN apt-get update && apt-get upgrade -y && apt-get install -y nginx openssl
+RUN apt-get update \
+	&& apt-get upgrade -y \
+	&& apt-get install -y \
+		vim \
+		nginx \
+		openssl \
+		curl
 
 COPY conf/nginx.conf /etc/nginx/nginx.conf
 COPY conf/vduchi.42.fr.conf /etc/nginx/conf.d/vduchi.42.fr.conf

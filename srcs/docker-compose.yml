@@ -59,7 +59,6 @@ volumes:
       device: /home/vduchi/data/wordpress
       o: bind
 
-
 networks:
   net:
     driver: bridge

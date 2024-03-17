@@ -2,7 +2,7 @@
 
 SSL_CERT="/etc/ssl/certs/nginx.crt"
 SSL_KEY="/etc/ssl/private/nginx.key"
-SSL_SUBJECT="/C=ES/ST=Barcelona/L=Barcelona/O=AcmeCo/CN=nmota-bu.42.fr"
+SSL_SUBJECT="/C=ES/ST=Barcelona/L=Barcelona/O=AcmeCo/CN=vduchi.42.fr"
 DAYS=365
 
 if [ ! -f "$SSL_CERT" ]; then
