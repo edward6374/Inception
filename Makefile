@@ -59,13 +59,13 @@ clean:
 	@echo "$(GREEN)Containers deleted!"
 	@$(DCK_EXEC) images --format "{{.Repository}}" | awk '{print $1}' | xargs -I {} docker rmi {} 1> /dev/null
 	@echo "Images deleted!$(DEF_COLOR)"
+	@$(DCK_EXEC) volume rm -f srcs_mariadb 1> /dev/null
+	@$(DCK_EXEC) volume rm -f srcs_wordpress 1> /dev/null
 
 fclean: clean
 	@$(DCK_EXEC) builder prune -f
 
 .PHONY: all up upd down im cont vol clean fclean
 
-#	@$(DCK_EXEC) volume rm -f srcs_mariadb 1> /dev/null
-#	@$(DCK_EXEC) volume rm -f srcs_wordpress 1> /dev/null
 #	@sudo rm -rf ~/data/mariadb/*
 #	@sudo rm -rf ~/data/wordpress/*
